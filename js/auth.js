@@ -1,33 +1,29 @@
 const emailInput = document.querySelector(".email");
 const passwordInput = document.querySelector(".password");
-const submitButton = document.querySelector(".submitBtn");
-const error = document.querySelector(".error");
+const loginButton = document.querySelector(".submitBtn");
+const errorMessage = document.querySelector(".error");
 
-
-const users = JSON.parse(localStorage.getItem("users"))
-
-
-submitButton.addEventListener("click", (e) => {
+loginButton.addEventListener("click", (e) => {
   e.preventDefault();
 
-  const isUser = !!users.find(item => item.email === emailInput.value)
+  const users = JSON.parse(localStorage.getItem("users"));
 
-  if(emailInput.value !== "" && passwordInput.value !== "") {
-    if(isUser) {
-      localStorage.setItem("isAuth", "true")
-      window.open("../index.html", "_self")
-    } else {
-      error.innerHTML = "Данный пользователь не найден!"
-    }
+  if (emailInput.value === "" || passwordInput.value === "") {
+    errorMessage.textContent = "All fields are required to be filled in";
   } else {
-    error.innerHTML = "Все поля обьязательны к заполнению!"
+    if (users.find((user) => user.email === emailInput.value)) {
+      localStorage.setItem("authorized", true);
+      window.open("./index.html", "_self");
+    } else {
+      errorMessage.textContent = "User is not found";
+    }
   }
-})
-
-
+  emailInput.value = "";
+  passwordInput.value = "";
+});
 
 window.addEventListener("load", () => {
-  if(localStorage.getItem("isAuth") === "true") {
-    window.open("../index.html", "_self")
+  if (localStorage.getItem("authorized") === "true") {
+    window.open("./index.html", "_self");
   }
-})
+});

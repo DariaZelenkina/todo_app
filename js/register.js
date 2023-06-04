@@ -1,52 +1,40 @@
 const emailInput = document.querySelector(".email");
 const passwordInput = document.querySelector(".password");
 const submitButton = document.querySelector(".submitBtn");
-const error = document.querySelector(".error");
+const errorMessage = document.querySelector(".error");
 
+submitButton.addEventListener("click", (e) => {
+  e.preventDefault();
 
+  const users = JSON.parse(localStorage.getItem("users"));
 
-window.addEventListener("load", () => {
-  if(!localStorage.getItem("users")) {
-    localStorage.setItem("users", JSON.stringify([]))
-  }
-})
-
-const users = JSON.parse(localStorage.getItem("users"))
-
-submitButton.addEventListener("click", (event) => {
-  event.preventDefault();
-
-  const isUser = !!users.find(item => item.email === emailInput.value)
-  
-  if(emailInput.value !== "" && passwordInput.value !== "") {
-    if(isUser) {
-      error.innerHTML = "Пользователь с таким email уже существует!"
-    } else {
-      const allUsers = JSON.parse(localStorage.getItem("users"));
-
-      localStorage.setItem("users", 
-        JSON.stringify(
-            [ 
-              ...allUsers, 
-              {email:emailInput.value, password: passwordInput.value}
-            ]
-        )
-      )
-
-      window.open("../auth.html", "_self")
-    }
-
-    emailInput.value = ""
-    passwordInput.value = ""
+  if (emailInput.value === "" || passwordInput.value === "") {
+    errorMessage.textContent = "All fields must be filled in";
   } else {
-    error.innerHTML = "Все поля обьязательны к заполнению!"
+    if (users.find(({ email }) => email === emailInput.value)) {
+      errorMessage.textContent =
+        "A user registered with this email already exists";
+    } else {
+      localStorage.setItem(
+        "users",
+        JSON.stringify([
+          ...users,
+          {
+            email: emailInput.value,
+            password: passwordInput.value,
+          },
+        ])
+      );
+      window.open("./auth.html", "_self");
+    }
   }
-})
 
-
+  emailInput.value = "";
+  passwordInput.value = "";
+});
 
 window.addEventListener("load", () => {
-  if(localStorage.getItem("isAuth") === "true") {
-    window.open("../index.html", "_self")
+  if (!localStorage.getItem("users")) {
+    localStorage.setItem("users", JSON.stringify([]));
   }
-})
+});

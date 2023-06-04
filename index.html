@@ -1,75 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  
-  <header>
-    <div class="container">
-      <div class="navbar">
-        <h1>My Todo App</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="navbar">
+          <h1>My Todo App</h1>
 
-        <button class="signOut">Sign out</button>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <div class="container">
-      <div class="center">
-        <div class="card">
-          <form>
-            <div>
-              <input 
-                type="text"
-                class="title"
-                placeholder="Title"
-              >
-            </div>
-            <div>
-              <input 
-                type="text"
-                class="description"
-                placeholder="Descritption"
-              >
-            </div>
-            <div>
-              <input 
-                type="text"
-                class="image"
-                placeholder="Image"
-              >
-            </div>
-            <p class="error">
-
-            </p>
-            <div>
-              <button class="addTodo">Add todo</button>
-            </div>
-          </form>
+          <button class="signOut">Sign out</button>
         </div>
       </div>
-    </div>
+    </header>
 
-
-    <div class="container">
-      <div class="row">
-
+    <main>
+      <div class="container">
+        <div class="center">
+          <div class="card">
+            <form>
+              <div>
+                <input type="text" class="title" placeholder="Title" />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  class="description"
+                  placeholder="Descritption"
+                />
+              </div>
+              <div>
+                <input type="text" class="image" placeholder="Image" />
+              </div>
+              <p class="error"></p>
+              <div>
+                <button class="addTodo">Add todo</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
-    </div>
-  </main>
 
-  
+      <div class="container">
+        <div class="row">
+          <template>
+            <div class="boxes">
+              <h4></h4>
+              <img src="" alt="" />
+              <p></p>
+              <div class="btn_inline">
+                <button onclick="">Delete</button>
+                <button onclick="">Edit</button>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </main>
 
-  <footer>
+    <footer></footer>
 
-  </footer>
-
-  <script src="js/script.js"></script>
-</body>
+    <script src="js/script.js"></script>
+  </body>
 </html>
